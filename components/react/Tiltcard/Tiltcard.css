@@ -1,0 +1,105 @@
+:root {
+  --card-bg: linear-gradient(180deg, #ffffff 0%, #f7f7fb 100%);
+  --card-text: #111827;
+  --card-radius: 16px;
+  --card-shadow: 0 12px 30px rgba(16,24,40,0.12);
+  --accent: linear-gradient(90deg,#7c3aed,#06b6d4);
+}
+
+/* Dark mode adapt */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --card-bg: linear-gradient(180deg, #161616 0%, #0f1724 100%);
+    --card-text: #e6eef8;
+    --card-shadow: 0 14px 40px rgba(2,6,23,0.6);
+  }
+}
+
+.tilt-card__wrapper {
+  display: inline-block;
+  border-radius: var(--card-radius);
+  perspective: 1000px; /* fallback if JS doesn't set */
+  cursor: pointer;
+  will-change: transform;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tilt-card__content {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--card-radius);
+  background: var(--card-bg);
+  color: var(--card-text);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: box-shadow 220ms ease, transform 200ms ease;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* media area */
+.tilt-card__media {
+  width: 100%;
+  height: 55%;
+  overflow: hidden;
+  flex: 0 0 auto;
+}
+
+.tilt-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 420ms cubic-bezier(.2,.8,.2,1);
+}
+
+/* body */
+.tilt-card__body {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 1 1 auto;
+}
+
+.tilt-card__title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.tilt-card__desc {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(17, 24, 39, 0.75);
+}
+
+@media (prefers-color-scheme: dark) {
+  .tilt-card__desc {
+    color: rgba(230, 238, 248, 0.78);
+  }
+}
+
+.tilt-card__glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: var(--card-radius);
+  mix-blend-mode: screen;
+  transition: background 150ms linear;
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tilt-card__content,
+  .tilt-card__media img {
+    transition: none !important;
+  }
+}
+
