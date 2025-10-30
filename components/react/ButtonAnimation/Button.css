@@ -1,0 +1,24 @@
+.btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #0f172a;
+}
+
+.animated-btn {
+  background: linear-gradient(45deg, #06b6d4, #3b82f6, #8b5cf6);
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 15px 35px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.animated-btn:hover {
+  transform: scale(1.1) rotate(3deg);
+  box-shadow: 0 0 20px #3b82f6;
+}
