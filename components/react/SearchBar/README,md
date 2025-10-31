@@ -1,0 +1,158 @@
+# Search Bar with Live Filtering
+
+A flexible and performant React search bar component that filters data in real-time as users type.
+
+## Features
+
+-  **Live Filtering** - Instant results as you type
+-  **Multi-field Search** - Search across multiple object properties
+-  **Nested Object Support** - Search nested properties using dot notation
+-  **Clear Button** - Quick reset functionality
+-  **Result Counter** - Displays number of filtered results
+-  **Customizable Rendering** - Flexible item rendering via props
+-  **Callback Support** - Access filtered results in parent components
+-  **Responsive Design** - Works seamlessly across all devices
+
+## Installation
+
+```bash
+npm install lucide-react
+```
+
+Make sure you have Tailwind CSS configured in your project.
+
+## Basic Usage
+
+```jsx
+import SearchBar from './SearchBar';
+
+const App = () => {
+  const data = [
+    { id: 1, name: 'Apple', category: 'Fruit' },
+    { id: 2, name: 'Carrot', category: 'Vegetable' },
+    { id: 3, name: 'Banana', category: 'Fruit' }
+  ];
+
+  return (
+    <SearchBar
+      data={data}
+      searchKeys={['name', 'category']}
+      placeholder="Search items..."
+    />
+  );
+};
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `data` | `Array` | `[]` | Array of items to search through |
+| `searchKeys` | `Array<string>` | `['name']` | Object keys to search in (supports nested keys with dot notation) |
+| `placeholder` | `string` | `'Search...'` | Placeholder text for the search input |
+| `onFilteredResults` | `function` | `undefined` | Callback function that receives filtered results |
+| `renderItem` | `function` | `undefined` | Custom render function for each item |
+| `className` | `string` | `''` | Additional CSS classes for the container |
+
+## Advanced Examples
+
+### Custom Item Rendering
+
+```jsx
+<SearchBar
+  data={products}
+  searchKeys={['name', 'description', 'category']}
+  placeholder="Search products..."
+  renderItem={(item) => (
+    <div className="p-4 bg-white rounded-lg shadow">
+      <h3 className="font-bold">{item.name}</h3>
+      <p className="text-gray-600">{item.description}</p>
+      <span className="text-blue-600">${item.price}</span>
+    </div>
+  )}
+/>
+```
+
+### With Filtered Results Callback
+
+```jsx
+const [filteredData, setFilteredData] = useState([]);
+
+<SearchBar
+  data={users}
+  searchKeys={['name', 'email']}
+  onFilteredResults={(results) => {
+    setFilteredData(results);
+    console.log(`Found ${results.length} users`);
+  }}
+/>
+```
+
+### Nested Object Search
+
+```jsx
+const data = [
+  { 
+    id: 1, 
+    user: { name: 'John', email: 'john@example.com' },
+    address: { city: 'New York' }
+  }
+];
+
+<SearchBar
+  data={data}
+  searchKeys={['user.name', 'user.email', 'address.city']}
+  placeholder="Search by name, email, or city..."
+/>
+```
+
+### With Custom Styling
+
+```jsx
+<SearchBar
+  data={items}
+  searchKeys={['title']}
+  className="my-8"
+  placeholder="Find your item..."
+/>
+```
+
+## Component Structure
+
+The component returns:
+- A search input with icon
+- Clear button (when text is entered)
+- Result counter (when searching)
+- Filtered results list
+- Empty state message (when no results found)
+
+## Customization
+
+### Styling
+
+The component uses Tailwind CSS utility classes. You can customize the appearance by:
+
+1. Modifying the Tailwind classes directly in the component
+2. Passing additional classes via the `className` prop
+3. Wrapping the component and applying custom styles
+
+### Search Logic
+
+The search is case-insensitive and matches partial strings. To modify the search behavior, edit the `filterData` function in the component.
+
+## Dependencies
+
+- `react` - ^18.0.0
+- `lucide-react` - ^0.263.0
+- `tailwindcss` - ^3.0.0
+
+## Browser Support
+
+Works in all modern browsers that support ES6+ features.
+
+## Performance Tips
+
+- For large datasets (1000+ items), consider implementing debouncing
+- Use `React.memo` if rendering complex items
+- Implement virtual scrolling for very large result sets
+
