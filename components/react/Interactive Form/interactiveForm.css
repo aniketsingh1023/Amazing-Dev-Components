@@ -1,0 +1,198 @@
+/* Basic layout and a simple fade transition */
+.msf-container {
+  max-width: 720px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 6px 22px rgba(10, 10, 10, 0.08);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+.msf-progress {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px 0;
+  overflow-x: auto;
+}
+
+.msf-progress-step {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.msf-progress-btn {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border: none;
+  background: transparent;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.msf-progress-btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.msf-progress-index {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #eee;
+  font-weight: 600;
+}
+
+.msf-progress-step.current .msf-progress-index {
+  background: #4f46e5;
+  color: #fff;
+}
+
+.msf-progress-step.done .msf-progress-index {
+  background: #10b981;
+  color: #fff;
+}
+
+.msf-progress-label {
+  font-size: 14px;
+  color: #333;
+}
+
+.msf-progress-connector {
+  width: 36px;
+  height: 2px;
+  background: #e6e6e6;
+  margin-left: 8px;
+}
+
+/* Step content */
+.msf-step-wrapper {
+  min-height: 180px;
+  margin-bottom: 18px;
+}
+
+.msf-step {
+  transition: opacity 320ms ease, transform 320ms ease;
+}
+
+.msf-fade {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fields */
+.msf-fields {
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.msf-field label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.msf-field input,
+.msf-field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+.msf-field input:focus,
+.msf-field textarea:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 4px rgba(79,70,229,0.06);
+}
+
+.msf-required {
+  color: #ef4444;
+  margin-left: 6px;
+  font-weight: 700;
+}
+
+.msf-error {
+  color: #ef4444;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+/* Footer */
+.msf-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.msf-buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.msf-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.msf-btn-ghost {
+  background: transparent;
+  color: #333;
+  border-color: #ddd;
+}
+
+.msf-btn-primary {
+  background: #4f46e5;
+  color: white;
+}
+
+.msf-btn-submit {
+  background: #059669;
+  color: white;
+}
+
+/* Step jump pills */
+.msf-step-pill {
+  border: none;
+  margin-left: 6px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #f3f4f6;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.msf-step-pill.done {
+  background: #ecfdf5;
+  color: #065f46;
+}
+
+.msf-step-pill.active {
+  outline: 2px solid #c7d2fe;
+}
+
+/* small responsive */
+@media (max-width: 640px) {
+  .msf-container {
+    padding: 14px;
+  }
+  .msf-progress-label {
+    display: none;
+  }
+}
